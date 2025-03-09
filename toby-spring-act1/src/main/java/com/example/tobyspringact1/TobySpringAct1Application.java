@@ -1,13 +1,11 @@
 package com.example.tobyspringact1;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.sql.SQLException;
 
-@SpringBootApplication
 public class TobySpringAct1Application {
 
-    public static void main(String[] args) {
-        SpringApplication.run(TobySpringAct1Application.class, args);
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+
     }
 
 }

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: toby-spring-act1
+
+jdbc:
+  url: jdbc:mysql://localhost:3306/toby_spring
+  user: root
+  password: 1234
