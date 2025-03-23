@@ -1,25 +1,21 @@
-package com.example.tobyspringact1.dao;
+package com.example.tobyspringact1.First.dao;
 
-import com.example.tobyspringact1.domain.User;
+import com.example.tobyspringact1.First.domain.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDaoV3 {
-    private ConnectionMaker connectionMaker;
+public class UserDaoV2 {
+    private SimpleConnectionMaker simpleConnectionMaker;
 
-    public UserDaoV3(){
-        connectionMaker = new DConnectionMaker();
-    }
-
-    public UserDaoV3(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public UserDaoV2() {
+        simpleConnectionMaker = new SimpleConnectionMaker();
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();
+        Connection c = simpleConnectionMaker.makeNewConnection();
 
         PreparedStatement ps = c.prepareStatement("insert into users(id,name,password) values(?,?,?)");
         ps.setString(1, user.getId());
@@ -33,7 +29,7 @@ public class UserDaoV3 {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();
+        Connection c = simpleConnectionMaker.makeNewConnection();
 
         PreparedStatement ps = c.prepareStatement("select * from users where id=?");
         ps.setString(1, id);

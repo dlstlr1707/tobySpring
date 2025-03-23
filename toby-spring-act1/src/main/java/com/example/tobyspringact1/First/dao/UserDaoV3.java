@@ -1,20 +1,25 @@
-package com.example.tobyspringact1.dao;
+package com.example.tobyspringact1.First.dao;
 
-import com.example.tobyspringact1.domain.User;
+import com.example.tobyspringact1.First.domain.User;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public abstract class AbstractUserDao {
-    private final String url = "jdbc:mysql://localhost:3306/toby_spring";
+public class UserDaoV3 {
+    private ConnectionMaker connectionMaker;
 
-    private final String userName = "root";
+    public UserDaoV3(){
+        connectionMaker = new DConnectionMaker();
+    }
 
-    private final String password = "1234";
-
-    public abstract Connection getConnection() throws SQLException, ClassNotFoundException;
+    public UserDaoV3(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
+    }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = getConnection();
+        Connection c = connectionMaker.makeConnection();
 
         PreparedStatement ps = c.prepareStatement("insert into users(id,name,password) values(?,?,?)");
         ps.setString(1, user.getId());
@@ -28,7 +33,7 @@ public abstract class AbstractUserDao {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = getConnection();
+        Connection c = connectionMaker.makeConnection();
 
         PreparedStatement ps = c.prepareStatement("select * from users where id=?");
         ps.setString(1, id);

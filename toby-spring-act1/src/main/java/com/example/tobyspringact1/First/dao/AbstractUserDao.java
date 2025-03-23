@@ -1,20 +1,20 @@
-package com.example.tobyspringact1.dao;
+package com.example.tobyspringact1.First.dao;
 
-import com.example.tobyspringact1.domain.User;
+import com.example.tobyspringact1.First.domain.User;
 
 import java.sql.*;
 
-public class UserDao {
+public abstract class AbstractUserDao {
     private final String url = "jdbc:mysql://localhost:3306/toby_spring";
 
     private final String userName = "root";
 
     private final String password = "1234";
 
-    public void add(User user) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
+    public abstract Connection getConnection() throws SQLException, ClassNotFoundException;
 
-        Connection c = DriverManager.getConnection(url, userName, password);
+    public void add(User user) throws ClassNotFoundException, SQLException {
+        Connection c = getConnection();
 
         PreparedStatement ps = c.prepareStatement("insert into users(id,name,password) values(?,?,?)");
         ps.setString(1, user.getId());
@@ -28,9 +28,7 @@ public class UserDao {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-
-        Connection c = DriverManager.getConnection(url, userName, password);
+        Connection c = getConnection();
 
         PreparedStatement ps = c.prepareStatement("select * from users where id=?");
         ps.setString(1, id);

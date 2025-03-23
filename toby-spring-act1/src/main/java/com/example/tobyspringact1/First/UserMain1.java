@@ -1,21 +1,19 @@
-package com.example.tobyspringact1;
+package com.example.tobyspringact1.First;
 
-import com.example.tobyspringact1.dao.ConnectionMaker;
-import com.example.tobyspringact1.dao.DConnectionMaker;
-import com.example.tobyspringact1.dao.UserDaoV3;
-import com.example.tobyspringact1.domain.User;
+import com.example.tobyspringact1.First.dao.UserDao;
+import com.example.tobyspringact1.First.domain.User;
 
 import java.sql.SQLException;
 
-public class UserDaoTest {
+
+public class UserMain1 {
+
     public static void main(String[] args) {
         try {
-            ConnectionMaker connectionMaker = new DConnectionMaker();
-
-            UserDaoV3 dao = new UserDaoV3(connectionMaker);
+            UserDao dao = new UserDao();
 
             User user = new User();
-            user.setId("whiteship4");
+            user.setId("whiteship3");
             user.setName("백기선");
             user.setPassword("married");
 

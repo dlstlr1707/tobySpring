@@ -1,20 +1,19 @@
-package com.example.tobyspringact1;
+package com.example.tobyspringact1.Second;
 
-import com.example.tobyspringact1.dao.UserDao;
-import com.example.tobyspringact1.domain.User;
-import org.springframework.context.annotation.PropertySource;
+import com.example.tobyspringact1.First.dao.UserDaoV3;
+import com.example.tobyspringact1.First.domain.User;
+import com.example.tobyspringact1.Second.dao.DaoFactory;
 
 import java.sql.SQLException;
 
-
-public class UserMain1 {
-
+public class UserDaoTest1 {
     public static void main(String[] args) {
-        try {
-            UserDao dao = new UserDao();
+        try{
+            // 리스트 1-15
+            UserDaoV3 dao = new DaoFactory().userDao();
 
             User user = new User();
-            user.setId("whiteship3");
+            user.setId("whiteship4");
             user.setName("백기선");
             user.setPassword("married");
 
@@ -27,7 +26,6 @@ public class UserMain1 {
             System.out.println(user2.getPassword());
 
             System.out.println(user2.getId() + " 조회 성공");
-
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }

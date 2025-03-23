@@ -1,4 +1,4 @@
-package com.example.tobyspringact1.domain;
+package com.example.tobyspringact1.First.domain;
 
 public class User {
     String id;
